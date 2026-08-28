@@ -3,30 +3,16 @@
 
 ## 0. Требования
 
-Все требования описаны в документе requirements.txt
+Все требования описаны в документе requirements.txt. setup.sh автоматически установит нужные зависимости
 
 ## 1. Установка
 
-Скачиваем папку, внутри папки запускаем консоль. Ставим виртуалку:
+Скачиваем папку, внутри папки запускаем консоль:
 
-- Делаем новенькое чисто окружение
-`python3 -m venv .venv`
-`source .venv/bin/activate`
-
-- Устанавливаем нужные зависимости
-`pip install pywayland pycairo`
-
-- Делаем layer-shell
+```bash
+./setup.sh
 ```
-python3 -m pywayland.scanner \
-  -i wlr-layer-shell-unstable-v1.xml \
-     /usr/share/wayland/wayland.xml \
-     /usr/share/wayland-protocols/stable/xdg-shell/xdg-shell.xml \
-  -o _gen
 
-cp -r _gen/wlr_layer_shell_unstable_v1 .venv/lib/python3.*/site-packages/pywayland/protocol/
-rm -rf _gen
-```
 
 ## 2. Запуск и отключение
 
@@ -70,6 +56,25 @@ pkill -9 -f dot_overlay_native.py
 ```bash
 .venv/bin/python dot_overlay_native.py --radius 10
 ```
+### 3.4 Изменение точки на изображение
+
+При помощи флага ```--use``` можно установить вместо точки собственное изображение. 
+Нужно закинуть желаемое изображение в папку и прописать его название возле флага в 
+кавычках или без кавычек (необходимо писать полное название изображения)
+
+```bash
+.venv/bin/python dot_overlay_native.py --use "image.png" 
+```
+or
+```так и не понял разницы между bash и не bash
+.venv/bin/python dot_overlay_native.py --use image.png
+```
+
+Не работает с флагом ```--color```
+
+### 4. Удаление
+
+Просто удалить папку 
 
 
 
